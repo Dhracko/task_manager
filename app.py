@@ -2,11 +2,14 @@ import os
 from flask import Flask
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+
+# Defines the env varible with the password
 from os import path
 if path.exists("env.py"):
   import env 
 
 MONGODB_URI = os.environ.get('MONGO_URI')
+# end
 
 app = Flask(__name__)
 
