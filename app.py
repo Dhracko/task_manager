@@ -1,10 +1,10 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, request
+from os import path
+from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from os import path
 if path.exists("env.py"):
-  import env 
+    import env
 
 MONGODB_URI = os.environ.get('MONGO_URI')
 
@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_tasks')
 def get_tasks():
-    return render_template('tasks.html', 
+    return render_template('tasks.html',
                            tasks=mongo.db.tasks.find())
 
 
@@ -78,7 +78,8 @@ def delete_category(category_id):
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     return render_template('editcategory.html',
-    category=mongo.db.categories.find_one({'_id': ObjectId(category_id)}))
+                            category=mongo.db.categories.find_one({'_id':
+                            ObjectId(category_id)}))
 
 
 @app.route('/update_category/<category_id>', methods=['POST'])
