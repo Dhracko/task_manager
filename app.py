@@ -1,3 +1,4 @@
+"""Module for tasks app"""
 import os
 from os import path
 from flask import Flask, render_template, redirect, request, url_for
@@ -18,6 +19,13 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_tasks')
 def get_tasks():
+    """
+    Function to get the tasks
+    Arg:
+        tasks: find all the tasks within Mongodb
+    Returns:
+        Rendered tasks.html containing the tasks found
+    """
     return render_template('tasks.html',
                            tasks=mongo.db.tasks.find())
 
